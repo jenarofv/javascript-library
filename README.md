@@ -1,3 +1,3 @@
-# html-template
+# javasrcipt library
 
-html temlplate with boilerplate html, simple css, and empty javascript to start coding a website
+javascript library created for [The Odin Project](https://www.theodinproject.com/lessons/node-path-javascript-library)

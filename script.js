@@ -33,3 +33,27 @@ function addBookToLibrary(title, author, pages, read) {
   book = new Book(title, author, pages, read);
   myLibrary.push(book);
 }
+
+addBookToLibrary("bible", "god", 420, false);
+addBookToLibrary("The Call Of Cthulhu", "HP Lovecraft", 89, true);
+
+function displayBooks () {
+  myLibrary.forEach(book => {
+    row = document.createElement("tr");
+    author = document.createElement("td");
+    title = document.createElement("td");
+    pages = document.createElement("td");
+    read = document.createElement("td");
+    author.innerText = book.author;
+    title.innerText = book.title;
+    pages.innerText = book.pages;
+    read.innerText = book.read;
+    row.appendChild(author);
+    row.appendChild(title);
+    row.appendChild(pages);
+    row.appendChild(read);
+    booklist.appendChild(row);
+  })
+}
+
+displayBooks();

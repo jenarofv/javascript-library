@@ -1,8 +1,29 @@
 * {
   font-family: sans-serif;
   box-sizing: border-box;
+  --padding: 20px;
+  --table-border-radius: 10px;
 }
 
 body {
   margin: 0;
+  padding: var(--padding);
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  width: clamp(500px, 75%, 100ch);
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid gray;
+}
+
+
+th[scope="col"] {
+  background-color: #eee;
+}
+
+th, td {
+  border: 1px solid gray;
 }

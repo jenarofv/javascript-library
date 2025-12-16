@@ -20,7 +20,7 @@ function Book (title, author, pages, read) {
     throw Error("Book pages should be Number");
   }
   if (typeof read === "boolean") {
-    this.read = pages;
+    this.read = read;
   } else  {
     throw Error("Book read should be Number");
   }

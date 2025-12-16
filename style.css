@@ -1,3 +1,10 @@
+@media (prefers-color-scheme: dark) {
+  * {
+    background-color: #222225;
+    color: #dda;
+  }
+}
+
 * {
   font-family: sans-serif;
   box-sizing: border-box;
@@ -22,6 +29,7 @@ table {
 
 th[scope="col"] {
   background-color: #eee;
+  color: black;
 }
 
 th, td {

@@ -23,6 +23,31 @@
     <tbody id="booklist">
     </tbody>
   </table>
+
+  <div class="book-form-container">
+    <h2> Add your own book</h2>
+    <form id="book-form" method="POST" action="#" name="book-form">
+      <div>
+        <label for="title" > Book title:</label>
+        <input id="title" name="title" type="text" required>
+      </div>
+      <div>
+        <label for="author" > Book author:</label>
+        <input id="author" name="author" type="text" required>
+      </div>
+      <div>
+        <label for="pages" > Total pages:</label>
+        <input id="pages" name="pages" type="number" required>
+      </div>
+      <div>
+        <label for="read" > Already read book?</label>
+        <input id="read" name="read" type="checkbox">
+        <span class="hidden"> yes </span>
+      </div>
+      <button type="submit" id="add-book"> Add to bookshelf</button>
+    </form>
+  </div>
+
 </div>
 </body>
 </html>

@@ -43,3 +43,18 @@ th[scope="col"] {
 th, td {
   border: 1px solid gray;
 }
+
+.book-form-container {
+  margin-top: 50px;
+  border: 1px solid gray;
+  border-radius: var(--table-border-radius);
+  padding: var(--padding);
+}
+
+#book-form > :not(:first-child){
+  margin-top: 16px;
+}
+
+.hidden {
+  display: none;
+}

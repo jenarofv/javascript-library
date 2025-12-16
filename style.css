@@ -38,9 +38,11 @@ table {
 th[scope="col"] {
   background-color: #eee;
   color: black;
+  border: 1px solid gray;
 }
 
-th, td {
+th:not([scope="col"]), td {
+  padding-left: 1ch;
   border: 1px solid gray;
 }
 

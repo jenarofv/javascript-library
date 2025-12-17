@@ -46,6 +46,10 @@ th:not([scope="col"]), td {
   border: 1px solid gray;
 }
 
+td:last-child {
+  text-align: center;
+}
+
 .book-form-container {
   margin-top: 50px;
   border: 1px solid gray;

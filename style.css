@@ -46,7 +46,7 @@ th:not([scope="col"]), td {
   border: 1px solid gray;
 }
 
-td:last-child {
+td:nth-child(4) {
   text-align: center;
 }
 

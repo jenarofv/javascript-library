@@ -64,6 +64,14 @@ function displayBook(book) {
   row.appendChild(pages);
   row.appendChild(read);
   booklist.appendChild(row);
+  deleteRow = document.createElement("td");
+  deleteButton = document.createElement("button");
+  deleteButton.addEventListener("click",  e => {
+    deleteButton.parentElement.parentElement.remove();
+  });
+  deleteButton.innerText = "delete entry";
+  row.appendChild(deleteRow);
+  deleteRow.appendChild(deleteButton);
 }
 
 function getBookFromForm() {

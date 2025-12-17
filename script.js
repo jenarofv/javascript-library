@@ -1,5 +1,15 @@
 const myLibrary = [];
+const form = document.querySelector("#book-form");
 booklist = document.querySelector("#booklist");
+
+const bookForm  = {
+  title : document.querySelector("#title"),
+  pages : document.querySelector("#pages"),
+  author : document.querySelector("#author"),
+  read : document.querySelector("#read"),
+}
+
+const addBtn = document.querySelector("#add-book");
 
 function Book (title, author, pages, read) {
   if (!new.target) {
@@ -23,7 +33,7 @@ function Book (title, author, pages, read) {
   if (typeof read === "boolean") {
     this.read = read;
   } else  {
-    throw Error("Book read should be Number");
+    throw Error("Book read should be boolean");
   }
 
   this.id = crypto.randomUUID();
@@ -47,13 +57,32 @@ function displayBooks () {
     author.innerText = book.author;
     title.innerText = book.title;
     pages.innerText = book.pages;
-    read.innerText = book.read;
+    read.innerText = book.read ? "✓" : "✗";
     row.appendChild(author);
     row.appendChild(title);
     row.appendChild(pages);
     row.appendChild(read);
     booklist.appendChild(row);
-  })
+  });
 }
 
 displayBooks();
+
+function getBookFromForm () {
+  addBookToLibrary(
+    bookForm.title.value,
+    bookForm.author.value,
+    bookForm.pages.valueAsNumber,
+    bookForm.read.checked
+  );
+}
+
+function clearForm () {
+}
+
+addBtn.addEventListener("click", e=> {
+  // e.preventDefault();
+  getBookFromForm();
+  console.table(myLibrary);
+  form.reset();
+})

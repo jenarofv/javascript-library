@@ -1,4 +1,3 @@
-const myLibrary = [];
 const form = document.querySelector("#book-form");
 const booklist = document.querySelector("#booklist");
 const addBtn = document.querySelector("#add-book");
@@ -11,40 +10,89 @@ const bookFormContent = {
   read: document.querySelector("#read")
 };
 
-function Book (title, author, pages, read) {
-  if (!new.target) {
-    alert("This function is a constructor, use the `new` keyword.");
-  }
-  if (typeof title === "string" && title !== "") {
+class Book {
+
+  static myLibrary = [];
+
+  #title;
+  #author;
+  #pages;
+  #read;
+  #id;
+
+  constructor (title, author, pages, read) {
     this.title = title;
-  } else  {
-    alert("Book title should be non empty string");
-  }
-  if (typeof author === "string" && author !== "") {
     this.author = author;
-  } else  {
-    alert("Book author should be non empty string");
-  }
-  if (typeof pages === "number" && pages > 0) {
     this.pages = pages;
-  } else  {
-    alert("Book pages should be at least 1");
-  }
-  if (typeof read === "boolean") {
     this.read = read;
-  } else  {
-    alert("Book read should be Boolean");
+    this.id = crypto.randomUUID();
   }
 
-  this.id = crypto.randomUUID();
+  set title (newTitle) {
+    if (newTitle === "") {
+      alert("Title can't be empty")
+      return;
+    } else {
+      this.#title = newTitle;
+    }
+  }
+
+  set author (newAuthor) {
+    if (newAuthor === "") {
+      alert("Author can't be empty")
+      return;
+    } else {
+      this.#author = newAuthor;
+    }
+  }
+
+  set pages (numOfPages) {
+    if (numOfPages < 1 || numOfPages !== Math.floor(numOfPages)) {
+      alert("Pages should be integer and at least 1")
+      return;
+    } else {
+      this.#pages = numOfPages;
+    }
+  }
+
+  set read (readBool) {
+    this.#read = readBool;
+  }
+
+  set id (value) {
+    this.#id = value;
+  }
+
+  get title () {
+    return this.#title;
+  }
+
+  get author () {
+    return this.#author;
+  }
+
+  get pages () {
+    return this.#pages;
+  }
+
+  get read () {
+    return this.#read;
+  }
+
+  get id () {
+    return this.#id;
+  }
 }
 
 function addBookToLibrary(title, author, pages, read) {
   book = new Book(title, author, pages, read);
-  if (title === "" || author === "" || pages < 0) {
+  if (book.title === undefined
+    || book.author === undefined
+    || book.pages === undefined
+  ) {
     return;
   }
-  myLibrary.push(book);
+  Book.myLibrary.push(book);
   displayBook(book);
 }
 

@@ -14,6 +14,43 @@ class Book {
 
   static myLibrary = [];
 
+  static addBookToLibrary (book) {
+    if (book.title === undefined
+      || book.author === undefined
+      || book.pages === undefined
+    ) {
+      return;
+    }
+    Book.myLibrary.push(book);
+    book.#displayBook();
+  }
+
+  #displayBook () {
+    let rowElement = document.createElement("tr");
+    let author = document.createElement("td");
+    let title = document.createElement("td");
+    let pages = document.createElement("td");
+    let read = document.createElement("td");
+    rowElement.id = book.id;
+    author.innerText = book.author;
+    title.innerText = book.title;
+    pages.innerText = book.pages;
+    read.innerText = book.read ? "✓" : "✗";
+    rowElement.appendChild(author);
+    rowElement.appendChild(title);
+    rowElement.appendChild(pages);
+    rowElement.appendChild(read);
+    booklist.appendChild(rowElement);
+    let deleteRow = document.createElement("td");
+    let deleteButton = document.createElement("button");
+    deleteButton.addEventListener("click",  e => {
+      deleteButton.parentElement.parentElement.remove();
+    });
+    deleteButton.innerText = "delete entry";
+    rowElement.appendChild(deleteRow);
+    deleteRow.appendChild(deleteButton);
+  }
+
   #title;
   #author;
   #pages;
@@ -84,51 +121,14 @@ class Book {
   }
 }
 
-function addBookToLibrary(title, author, pages, read) {
-  book = new Book(title, author, pages, read);
-  if (book.title === undefined
-    || book.author === undefined
-    || book.pages === undefined
-  ) {
-    return;
-  }
-  Book.myLibrary.push(book);
-  displayBook(book);
-}
-
-function displayBook(book) {
-  row = document.createElement("tr");
-  author = document.createElement("td");
-  title = document.createElement("td");
-  pages = document.createElement("td");
-  read = document.createElement("td");
-  row.id = book.id;
-  author.innerText = book.author;
-  title.innerText = book.title;
-  pages.innerText = book.pages;
-  read.innerText = book.read ? "✓" : "✗";
-  row.appendChild(author);
-  row.appendChild(title);
-  row.appendChild(pages);
-  row.appendChild(read);
-  booklist.appendChild(row);
-  deleteRow = document.createElement("td");
-  deleteButton = document.createElement("button");
-  deleteButton.addEventListener("click",  e => {
-    deleteButton.parentElement.parentElement.remove();
-  });
-  deleteButton.innerText = "delete entry";
-  row.appendChild(deleteRow);
-  deleteRow.appendChild(deleteButton);
-}
-
 function getBookFromForm() {
-  addBookToLibrary(
+  book = new Book(
     bookFormContent.title.value,
     bookFormContent.author.value,
     bookFormContent.pages.valueAsNumber,
     bookFormContent.read.checked
-  );
+  )
+  Book.addBookToLibrary(book);
 }
 
 addBtn.addEventListener("click", e => {

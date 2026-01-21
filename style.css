@@ -1,15 +1,19 @@
-@media (prefers-color-scheme: dark) {
-  * {
-    background-color: #222225;
-    color: #dda;
-  }
-}
-
 * {
   font-family: sans-serif;
   box-sizing: border-box;
   --padding: 20px;
   --table-border-radius: 10px;
+  --error-fg: hsl(0deg 92 50);
+  --red: hsl(0deg 92 80);
+}
+
+@media (prefers-color-scheme: dark) {
+  * {
+    background-color: #222225;
+    color: #dda;
+    --error-fg: hsl(0deg 92 86);
+    --red: hsl(0deg 92 20);
+  }
 }
 
 h1, h2 {
@@ -48,6 +52,14 @@ th:not([scope="col"]), td {
 
 td:nth-child(4) {
   text-align: center;
+}
+
+.error {
+  color: var(--error-fg);
+}
+
+input:invalid {
+  background-color: var(--red);
 }
 
 .book-form-container {

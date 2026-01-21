@@ -107,6 +107,14 @@ class Book {
 }
 
 function getBookFromForm() {
+  if (!(
+    bookFormContent.title.validity.valid
+    && bookFormContent.author.validity.valid
+    && bookFormContent.pages.validity.valid
+    && bookFormContent.read.validity.valid
+  )) {
+    return;
+  }
   const book = new Book(
     bookFormContent.title.value,
     bookFormContent.author.value,
@@ -116,16 +124,52 @@ function getBookFromForm() {
   Book.addBookToLibrary(book);
 }
 
-function titleValidator (event) {
+function patternValidator (event) {
   const field = event.target;
   const err = document.querySelector(`#${event.target.id} + span.error`);
-  console.log("foo");
-  err.textContent="error";
-  const pattern = event.target.pattern;
-  console.log(pattern);
+  if (field.validity.valid) {
+    err.textContent = "";
+    return;
+  }
+  let errMsg;
+  switch (field.id) {
+    case "title":
+      errMsg = "title cannot be empty";
+      break;
+    case "author":
+      errMsg = "author can only have names, periods, dashes and commas."
+  }
+  if (field.validity.valueMissing) {
+    errMsg = `${field.id} cannot be empty`;
+  } else if (field.validity.patternMismatch) {
+  }
+  err.textContent = errMsg;
 }
 
-bookFormContent.title.addEventListener("change", titleValidator);
+function pagesValidator (event) {
+  const field = event.target;
+  const err = document.querySelector(`#${event.target.id} + span.error`);
+  if (field.validity.valid) {
+    err.textContent = "";
+    return;
+  }
+  if (field.validity.rangeOverflow) {
+    errMsg = "C'mon no book is that big";
+  } else if (field.validity.rangeUnderflow) {
+    errMsg = "only nonegative numbers, please.";
+  } else if (field.validity.stepMismatch) {
+    errMsg = "only integers, please.";
+  } else if (field.validity.badInput) {
+    errMsg = "only numbers, please.";
+  } else if (field.validity.valueMissing) {
+    errMsg = `${field.id} cannot be empty`;
+  }
+  err.textContent = errMsg;
+}
+
+bookFormContent.author.addEventListener("input", patternValidator);
+bookFormContent.title.addEventListener("input", patternValidator);
+bookFormContent.pages.addEventListener("input", pagesValidator);
 
 
 addBtn.addEventListener("click", e => {

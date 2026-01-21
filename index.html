@@ -30,17 +30,17 @@
     <form novalidate id="book-form" method="POST" action="#" name="book-form">
       <div>
         <label for="title" > Book title:</label>
-        <input id="title" name="title" type="text" required pattern="[a-zA-Z .,]+">
+        <input id="title" name="title" type="text" required pattern=".+">
         <span class="error" aria-live="polite"></span>
       </div>
       <div>
         <label for="author" > Book author:</label>
-        <input id="author" name="author" type="text" required>
+        <input id="author" name="author" type="text" required pattern="[a-zA-Z .,\-]+">
         <span class="error" aria-live="polite"></span>
       </div>
       <div>
         <label for="pages" > Total pages:</label>
-        <input id="pages" name="pages" type="number" required>
+        <input id="pages" name="pages" type="number" min="1" step="1" max="10000"required>
         <span class="error" aria-live="polite"></span>
       </div>
       <div>

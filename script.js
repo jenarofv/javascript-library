@@ -31,11 +31,11 @@ class Book {
     let title = document.createElement("td");
     let pages = document.createElement("td");
     let read = document.createElement("td");
-    rowElement.id = book.id;
-    author.innerText = book.author;
-    title.innerText = book.title;
-    pages.innerText = book.pages;
-    read.innerText = book.read ? "✓" : "✗";
+    rowElement.id = this.id;
+    author.innerText = this.author;
+    title.innerText = this.title;
+    pages.innerText = this.pages;
+    read.innerText = this.read ? "✓" : "✗";
     rowElement.appendChild(author);
     rowElement.appendChild(title);
     rowElement.appendChild(pages);
@@ -66,30 +66,15 @@ class Book {
   }
 
   set title (newTitle) {
-    if (newTitle === "") {
-      alert("Title can't be empty")
-      return;
-    } else {
-      this.#title = newTitle;
-    }
+    this.#title = newTitle;
   }
 
   set author (newAuthor) {
-    if (newAuthor === "") {
-      alert("Author can't be empty")
-      return;
-    } else {
-      this.#author = newAuthor;
-    }
+    this.#author = newAuthor;
   }
 
   set pages (numOfPages) {
-    if (numOfPages < 1 || numOfPages !== Math.floor(numOfPages)) {
-      alert("Pages should be integer and at least 1")
-      return;
-    } else {
-      this.#pages = numOfPages;
-    }
+    this.#pages = numOfPages;
   }
 
   set read (readBool) {
@@ -122,7 +107,7 @@ class Book {
 }
 
 function getBookFromForm() {
-  book = new Book(
+  const book = new Book(
     bookFormContent.title.value,
     bookFormContent.author.value,
     bookFormContent.pages.valueAsNumber,
@@ -130,6 +115,18 @@ function getBookFromForm() {
   )
   Book.addBookToLibrary(book);
 }
+
+function titleValidator (event) {
+  const field = event.target;
+  const err = document.querySelector(`#${event.target.id} + span.error`);
+  console.log("foo");
+  err.textContent="error";
+  const pattern = event.target.pattern;
+  console.log(pattern);
+}
+
+bookFormContent.title.addEventListener("change", titleValidator);
+
 
 addBtn.addEventListener("click", e => {
   e.preventDefault();

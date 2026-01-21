@@ -27,18 +27,21 @@
 
   <div class="book-form-container">
     <h2> Add your own book</h2>
-    <form id="book-form" method="POST" action="#" name="book-form">
+    <form novalidate id="book-form" method="POST" action="#" name="book-form">
       <div>
         <label for="title" > Book title:</label>
-        <input id="title" name="title" type="text" required>
+        <input id="title" name="title" type="text" required pattern="[a-zA-Z .,]+">
+        <span class="error" aria-live="polite"></span>
       </div>
       <div>
         <label for="author" > Book author:</label>
         <input id="author" name="author" type="text" required>
+        <span class="error" aria-live="polite"></span>
       </div>
       <div>
         <label for="pages" > Total pages:</label>
         <input id="pages" name="pages" type="number" required>
+        <span class="error" aria-live="polite"></span>
       </div>
       <div>
         <label for="read" > Already read book?</label>
